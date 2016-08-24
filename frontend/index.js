@@ -1,13 +1,27 @@
 
-import homeController from './controllers/home-controller.js'
+import angular from 'angular'
+import angularRoute from 'angular-route'
+import ace from 'angular-ui-ace'
+
+// Directives
 import recordText from './directives/record-text.js'
 import textPlayer from './directives/text-player.js'
 
-console.log(homeController);
+// Controllers
+import homeController from './controllers/home-controller.js'
+import playerController from './controllers/player-controller.js'
 
-angular.module('app', ['ui.ace']) // ui ace not found on webpack
-	.directive('recordText', require('./directives/record-text.js'))
-	.directive('textPlayer', require('./directives/text-player.js'))
-	.controller('homeController', homeController)
+// Routes
+import routes from './routes/index.js'
+
+angular.module('app', [
+		'ui.ace', 
+		'ngRoute'
+	])
+	.directive(...recordText)
+	.directive(...textPlayer)
+	.controller(...homeController)
+	.controller(...playerController)
+	.config(routes)
 
 

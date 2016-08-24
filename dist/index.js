@@ -46,26 +46,159 @@
 
 	'use strict';
 
-	var _homeController = __webpack_require__(1);
+	var _angular$module$direc, _angular$module$direc2, _angular$module$direc3, _angular$module;
 
-	var _homeController2 = _interopRequireDefault(_homeController);
+	var _angular = __webpack_require__(1);
 
-	var _recordText = __webpack_require__(2);
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _angularRoute = __webpack_require__(2);
+
+	var _angularRoute2 = _interopRequireDefault(_angularRoute);
+
+	var _angularUiAce = __webpack_require__(3);
+
+	var _angularUiAce2 = _interopRequireDefault(_angularUiAce);
+
+	var _recordText = __webpack_require__(4);
 
 	var _recordText2 = _interopRequireDefault(_recordText);
 
-	var _textPlayer = __webpack_require__(4);
+	var _textPlayer = __webpack_require__(5);
 
 	var _textPlayer2 = _interopRequireDefault(_textPlayer);
 
+	var _homeController = __webpack_require__(6);
+
+	var _homeController2 = _interopRequireDefault(_homeController);
+
+	var _playerController = __webpack_require__(7);
+
+	var _playerController2 = _interopRequireDefault(_playerController);
+
+	var _index = __webpack_require__(8);
+
+	var _index2 = _interopRequireDefault(_index);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	console.log(_homeController2.default);
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	angular.module('app', ['ui.ace']).directive('recordText', __webpack_require__(2)).directive('textPlayer', __webpack_require__(4)).controller('homeController', _homeController2.default);
+	// Directives
+
+
+	// Controllers
+
+
+	// Routes
+
+
+	(_angular$module$direc = (_angular$module$direc2 = (_angular$module$direc3 = (_angular$module = _angular2.default.module('app', ['ui.ace', 'ngRoute'])).directive.apply(_angular$module, _toConsumableArray(_recordText2.default))).directive.apply(_angular$module$direc3, _toConsumableArray(_textPlayer2.default))).controller.apply(_angular$module$direc2, _toConsumableArray(_homeController2.default))).controller.apply(_angular$module$direc, _toConsumableArray(_playerController2.default)).config(_index2.default);
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	module.exports = angular;
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	module.exports = angular-route;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = angular-ui-ace;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = ['recordText', function () {
+		return {
+			restrict: 'A',
+			controller: recordTextDirectiveController,
+			scope: {
+				text: "=recordText",
+				record: "=recordOutput"
+			}
+		};
+	}];
+
+
+	var recordTextDirectiveController = function recordTextDirectiveController($scope, $timeout) {
+		var vm = this;
+		vm.startTime = new Date().getTime();
+		vm.record = true;
+		$scope.record = $scope.record || [];
+
+		$scope.stop = function () {
+			vm.record = false;
+		};
+
+		$scope.$watch(function () {
+			return $scope.text;
+		}, function () {
+			console.log("Listener executed");
+			$scope.record.push({
+				time: new Date().getTime(),
+				value: $scope.text
+			});
+		});
+	};
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = ['textPlayer', function () {
+		return {
+			restrict: 'A',
+			controller: textPlayerDirectiveController,
+			scope: {
+				text: "=playerText",
+				record: "=playerRecord",
+				stage: "=stage"
+			}
+		};
+	}];
+
+
+	var textPlayerDirectiveController = function textPlayerDirectiveController($scope, $timeout) {
+		var vm = this;
+		vm.toPlay = [];
+		$scope.stage = $scope.text;
+
+		var play = function playFrame(index, ms) {
+			var item = vm.toPlay[index];
+			if (!item) return;
+			$scope.stage = item.value;
+			$timeout(function () {
+				playFrame(index + 1, item.time);
+			}, item.time - ms);
+		};
+
+		$scope.start = function (d) {
+			vm.toPlay = angular.copy($scope.playerRecord);
+			play(0, vm.toPlay[0].time);
+		};
+	};
+
+/***/ },
+/* 6 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -73,99 +206,52 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.default = ['HomeController', function () {
+		var _this = this;
 
-	exports.default = function ($scope) {
-		$scope.recordedModel = [];
-		$scope.text = "start typing";
-		$scope.reset = function () {
-			$scope.recordedModel = [];
-			$scope.text = "start typing";
+		this.recordedModel = [];
+		this.response = "Hello";
+		this.reset = function () {
+			_this.recordedModel = [];
+			_this.text = "start typing";
 		};
-	};
+	}];
 
 /***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
-
-	module.export = function () {
-		return {
-			restrict: 'A',
-			controller: recordTextDirectiveController
-		};
-	};
-
-	var recordTextDirectiveController = function recordTextDirectiveController($scope, $timeout) {
-		var vm = this;
-		vm.startTime = new Date().getTime();
-		vm.record = true;
-
-		$scope.stop = function () {
-			vm.record = false;
-		};
-
-		$scope.snapshot = function () {
-			$timeout(function () {
-				$scope.recordedModel.push({
-					time: new Date().getTime(),
-					value: $scope.text
-				});
-				if (vm.record) $scope.snapshot();
-			}, 350);
-		};
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
-
-/***/ },
-/* 3 */
+/* 7 */
 /***/ function(module, exports) {
 
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
+	"use strict";
 
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = ['PlayerController', function () {
+		var _this = this;
+
+		this.recordedModel = [];
+		this.response = "Hello";
+		this.reset = function () {
+			_this.recordedModel = [];
+			_this.text = "start typing";
+		};
+	}];
 
 /***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/* 8 */
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+	'use strict';
 
-	module.export = function () {
-		return {
-			restrict: 'A',
-			controller: textPlayerDirectiveController
-		};
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	exports.default = function ($routeProvider, $locationProvider) {
+	    $routeProvider.when('/', {
+	        controller: 'HomeController'
+	    });
 	};
-
-	var textPlayerDirectiveController = function textPlayerDirectiveController($scope, $timeout) {
-		var vm = this;
-		vm.toPlay = [];
-		$scope.stage = 'Hola';
-
-		var play = function rec(index, ms) {
-			var item = vm.toPlay[index];
-			if (!item) return;
-			$scope.stage = item.value;
-			$timeout(function () {
-				rec(index + 1, item.time);
-			}, item.time - ms);
-		};
-
-		$scope.start = function (d) {
-			vm.toPlay = angular.copy($scope.recordedModel);
-			play(0, vm.toPlay[0].time);
-		};
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
 
 /***/ }
 /******/ ]);

@@ -19,6 +19,8 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
     "angular-ui-ace": "^0.2.3"
   }
 }
