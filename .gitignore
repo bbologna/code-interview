@@ -13,6 +13,7 @@ pids
 *.pid.lock
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
+/dist/
 build/Release
 
 # Dependency directories
@@ -21,6 +22,3 @@ jspm_packages
 
 # Optional npm cache directory
 .npm
-
-# Compiled javascript
-dist/index.js
