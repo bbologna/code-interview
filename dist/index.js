@@ -46,37 +46,29 @@
 
 	'use strict';
 
-	var _angular$module$direc, _angular$module$direc2, _angular$module$direc3, _angular$module;
+	var _console, _console2, _angular$module$direc, _angular$module$direc2, _angular$module$direc3, _angular$module;
 
 	var _angular = __webpack_require__(1);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularRoute = __webpack_require__(2);
-
-	var _angularRoute2 = _interopRequireDefault(_angularRoute);
-
-	var _angularUiAce = __webpack_require__(3);
-
-	var _angularUiAce2 = _interopRequireDefault(_angularUiAce);
-
-	var _recordText = __webpack_require__(4);
+	var _recordText = __webpack_require__(2);
 
 	var _recordText2 = _interopRequireDefault(_recordText);
 
-	var _textPlayer = __webpack_require__(5);
+	var _textPlayer = __webpack_require__(3);
 
 	var _textPlayer2 = _interopRequireDefault(_textPlayer);
 
-	var _homeController = __webpack_require__(6);
+	var _homeController = __webpack_require__(4);
 
 	var _homeController2 = _interopRequireDefault(_homeController);
 
-	var _playerController = __webpack_require__(7);
+	var _playerController = __webpack_require__(5);
 
 	var _playerController2 = _interopRequireDefault(_playerController);
 
-	var _index = __webpack_require__(8);
+	var _index = __webpack_require__(6);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -90,10 +82,14 @@
 	// Controllers
 
 
+	(_console = console).log.apply(_console, ['homeController'].concat(_toConsumableArray(_homeController2.default)));
+	(_console2 = console).log.apply(_console2, ['playerController'].concat(_toConsumableArray(_playerController2.default)));
+
 	// Routes
 
 
-	(_angular$module$direc = (_angular$module$direc2 = (_angular$module$direc3 = (_angular$module = _angular2.default.module('app', ['ui.ace', 'ngRoute'])).directive.apply(_angular$module, _toConsumableArray(_recordText2.default))).directive.apply(_angular$module$direc3, _toConsumableArray(_textPlayer2.default))).controller.apply(_angular$module$direc2, _toConsumableArray(_homeController2.default))).controller.apply(_angular$module$direc, _toConsumableArray(_playerController2.default)).config(_index2.default);
+	(_angular$module$direc = (_angular$module$direc2 = (_angular$module$direc3 = (_angular$module = _angular2.default.module('app', ['ui.ace', 'ngRoute'])).directive.apply(_angular$module, _toConsumableArray(_recordText2.default))).directive.apply(_angular$module$direc3, _toConsumableArray(_textPlayer2.default))).controller.apply(_angular$module$direc2, _toConsumableArray(_homeController2.default))).controller.apply(_angular$module$direc, _toConsumableArray(_playerController2.default));
+	// .config(routes)
 
 /***/ },
 /* 1 */
@@ -103,18 +99,6 @@
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
-
-	module.exports = angular-route;
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = angular-ui-ace;
-
-/***/ },
-/* 4 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -156,7 +140,7 @@
 	};
 
 /***/ },
-/* 5 */
+/* 3 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -198,47 +182,47 @@
 	};
 
 /***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = ['HomeController', [function () {
+		var _this = this;
+
+		this.recordedModel = [];
+		this.response = "Hello";
+		this.reset = function () {
+			_this.recordedModel = [];
+			_this.text = "start typing";
+		};
+	}]];
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = ['PlayerController', [function () {
+		var _this = this;
+
+		this.recordedModel = [];
+		this.response = "Hello";
+		this.reset = function () {
+			_this.recordedModel = [];
+			_this.text = "start typing";
+		};
+	}]];
+
+/***/ },
 /* 6 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = ['HomeController', function () {
-		var _this = this;
-
-		this.recordedModel = [];
-		this.response = "Hello";
-		this.reset = function () {
-			_this.recordedModel = [];
-			_this.text = "start typing";
-		};
-	}];
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = ['PlayerController', function () {
-		var _this = this;
-
-		this.recordedModel = [];
-		this.response = "Hello";
-		this.reset = function () {
-			_this.recordedModel = [];
-			_this.text = "start typing";
-		};
-	}];
-
-/***/ },
-/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';

@@ -17,5 +17,6 @@ module.exports = {
         'angular': 'angular',
         'angular-route' : 'angular-route',
         'angular-ui-ace' : 'angular-ui-ace'
-    }
+    },
+    // devtool: 'eval'
 };

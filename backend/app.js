@@ -4,6 +4,7 @@ var app = express();
 
 // Setup static files folder
 app.use('/dist', express.static(path.resolve(__dirname, '../dist')))
+app.use('/dist', express.static(path.resolve(__dirname, '../node_modules')))
 
 // Setup index to page
 app.get('/', function (req, res) {
