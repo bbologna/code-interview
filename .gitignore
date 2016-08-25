@@ -24,3 +24,6 @@ jspm_packages
 
 # Compiled javascript
 dist/index.js
+
+# Visual Studio Code
+.vscode

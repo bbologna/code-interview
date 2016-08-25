@@ -26,3 +26,6 @@ angular.module('app', [
 	.config(routes)
 
 
+if (module.hot) {
+  module.hot.accept();
+}

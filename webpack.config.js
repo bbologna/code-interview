@@ -1,4 +1,5 @@
-var path = require('path')
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     entry: './frontend/index.js',
@@ -7,16 +8,21 @@ module.exports = {
         filename: 'index.js'
     },
     module: {
-        loaders: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-        }]
+        loaders: [
+            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.css$/, loader: 'style!css', exclude: /node_modules/},
+            { test: /\.png$/, loader: 'url', exclude: /node_modules/}
+        ]
     },
     externals: {
         'angular': 'angular',
         'angular-route' : 'angular-route',
         'angular-ui-ace' : 'angular-ui-ace'
     },
-    // devtool: 'eval'
+    devtool: 'eval-source-map',
+    plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ]
 };
