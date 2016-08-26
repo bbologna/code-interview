@@ -1,4 +1,4 @@
-import view from 'html!../views/home.html'
+import view from '../views/home.html'
 
 export default function($routeProvider, $locationProvider) {
     $routeProvider

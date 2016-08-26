@@ -10,7 +10,8 @@ import homeController from './controllers/home-controller.js'
 import playerController from './controllers/player-controller.js'
 
 // Index view
-import view from 'file?name=[name].[ext]!./views/index.html'
+import index from './views/index.html'
+import style from './views/style.css'
 
 console.log('homeController', ...homeController);
 console.log('playerController', ...playerController);
