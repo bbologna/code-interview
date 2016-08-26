@@ -22,12 +22,9 @@ jspm_packages
 
 # Optional npm cache directory
 .npm
-<<<<<<< HEAD
-=======
 
 # Compiled javascript
-dist/index.js
+dist
 
 # Visual Studio Code
 .vscode
->>>>>>> feature/refactor_webpack_build
